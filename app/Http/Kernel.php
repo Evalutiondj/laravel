@@ -70,6 +70,7 @@ class Kernel extends HttpKernel
      * Đăng ký middleware
      */
     protected $routeMiddleware = [
-        'admin' => \App\Http\Middleware\AdminMiddleware::class,
+        'admin' => \App\Http\Middleware\IsAdmin::class,
     ];
+   
 }

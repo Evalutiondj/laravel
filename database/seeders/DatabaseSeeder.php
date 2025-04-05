@@ -11,11 +11,16 @@ class DatabaseSeeder extends Seeder
 {
     public function run()
     {
-        User::factory()->create([
-            'name' => 'Alec Thompson',
-            'email' => 'admin@corporateui.com',
-            'password' => Hash::make('secret'),
-            'about' => "Hi, I’m Alec Thompson, Decisions: If you can’t decide, the answer is no. If two equally difficult paths, choose the one more painful in the short term (pain avoidance is creating an illusion of equality).",
-        ]);
+        $this->call(MovieSeeder::class);  // Đảm bảo rằng nó đúng cú pháp như này
+        
+        if (!User::where('email', 'admin@corporateui.com')->exists()) {
+            User::create([
+                'name' => 'Alec Thompson',
+                'email' => 'admin@corporateui.com',
+                'password' => bcrypt('yourpassword'),
+                'about' => 'Hi, I’m Alec Thompson...',
+            ]);
+        }
+        
     }
 }

@@ -92,3 +92,15 @@ Route::prefix('admin')->middleware(['auth', 'admin'])->group(function () {
     Route::resource('movies', MovieController::class);
     Route::resource('users', UserController::class);
 });
+
+Route::middleware(['auth'])->group(function () {
+    Route::get('/admin', function () {
+        return view('admin.dashboard');
+    })->name('admin.dashboard');
+});
+
+use App\Http\Controllers\Admin\MovieController;
+
+Route::middleware(['auth'])->prefix('admin')->group(function () {
+    Route::resource('movies', MovieController::class);
+});
